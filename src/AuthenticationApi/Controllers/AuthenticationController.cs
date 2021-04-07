@@ -23,10 +23,10 @@ namespace AuthenticationApi.Controllers
             _logger = logger;
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Validate(PostRequest postRequest)
+        [HttpGet]
+        public async Task<ActionResult> Validate(string email)
         {
-            if (postRequest.Email == "danilo@example.com")
+            if (email == "danilo@example.com")
             {
                 return Ok(new { Email = "danilo@example.com" });
             }
