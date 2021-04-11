@@ -31,7 +31,11 @@ namespace AuthenticationApi.Controllers
                 return Ok(new { promoCode = "danilo@example.com" });
             }
 
-            return Conflict(new { userMessage = "There is an error coming from API" });
+            return Conflict(new ResponseContent() { 
+                version = "1.0.0",
+                status = 409,
+                userMessage = "There is an error from my api"
+            });
         }
     }
     
@@ -40,5 +44,16 @@ namespace AuthenticationApi.Controllers
         public string Email { get; set; }
         public string Language { get; set; }
         public string LoyaltyId { get; set; }
+    }
+
+    public class ResponseContent
+    {
+        public string version { get; set; }
+        public int status { get; set; }
+        public string code { get; set; }
+        public string userMessage { get; set; }
+        public string developerMessage { get; set; }
+        public string requestId { get; set; }
+        public string moreInfo { get; set; }
     }
 }
