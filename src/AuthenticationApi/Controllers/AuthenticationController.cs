@@ -24,14 +24,21 @@ namespace AuthenticationApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Validate(string email)
+        public async Task<ActionResult> Validate(Loyalty loyalty)
         {
-            if (email == "danilo@example.com")
+            if (loyalty.LoyaltyId == "abcd")
             {
-                return Ok(new { Email = "danilo@example.com" });
+                return Ok(new { promoCode = "danilo@example.com" });
             }
 
-            return Conflict(new { Error = "There is an error" });
+            return Conflict(new { userMessage = "There is an error coming from API" });
         }
+    }
+    
+    public class Loyalty
+    {
+        public string Email { get; set; }
+        public string Language { get; set; }
+        public string LoyaltyId { get; set; }
     }
 }
